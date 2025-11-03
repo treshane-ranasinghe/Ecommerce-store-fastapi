@@ -33,26 +33,26 @@ Each service connects to its own PostgreSQL database, and all configurations are
 ## Project Structure
 
 Ecommerce-fastapi/
-├─ .env                        # Global environment variables for all services
-├─ docker-compose.yml           # Docker Compose configuration for all services
-├─ compose-init-sql/            # SQL scripts to initialize databases
+├─ .env                           # Global environment variables for all services
+├─ docker-compose.yml             # Docker Compose configuration for all services
+├─ compose-init-sql/              # SQL scripts to initialize databases
 │   ├─ 01_create_product_db.sql
 │   ├─ 02_create_order_db.sql
 │   └─ 03_create_cart_db.sql
-├─ product_service/             # Product microservice
+├─ product_service/               # Product microservice
 │   ├─ app/
-│   │   ├─ main.py              # FastAPI app entrypoint
+│   │   ├─ main.py                # FastAPI app entrypoint
 │   │   ├─ models/
-│   │   │   └─ product.py       # SQLAlchemy models
+│   │   │   └─ product.py         # SQLAlchemy models
 │   │   ├─ schemas/
 │   │   │   └─ product_schemas.py
 │   │   ├─ db/
-│   │   │   ├─ sessions.py      # SQLAlchemy session configuration
-│   │   │   └─ config.py        # Pydantic settings
+│   │   │   ├─ sessions.py        # SQLAlchemy session configuration
+│   │   │   └─ config.py          # Pydantic settings
 │   │   └─ routers/
 │   │       └─ product_router.py
 │   └─ requirements.txt
-├─ order_service/               # Order microservice
+├─ order_service/                 # Order microservice
 │   ├─ app/
 │   │   ├─ main.py
 │   │   ├─ models/
@@ -62,7 +62,7 @@ Ecommerce-fastapi/
 │   │   │   └─ config.py
 │   │   └─ routers/
 │   └─ requirements.txt
-├─ cart_service/                # Cart microservice
+├─ cart_service/                  # Cart microservice
 │   ├─ app/
 │   │   ├─ main.py
 │   │   ├─ models/
@@ -72,6 +72,5 @@ Ecommerce-fastapi/
 │   │   │   └─ config.py
 │   │   └─ routers/
 │   └─ requirements.txt
-├─ README.md                    # Project documentation
-└─ .gitignore                   # Git ignore file
-
+├─ README.md                      # Project documentation
+└─ .gitignore                     # Git ignore file
