@@ -74,5 +74,4 @@ Ecommerce-fastapi/
 │   └─ requirements.txt
 ├─ README.md                    # Project documentation
 └─ .gitignore                   # Git ignore file
-file
 
