@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:15
+    env_file:
+      - ./.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./compose-init-sql:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      retries: 5
+
+  productservice:
+    build: ./product_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    environment:
+      DATABASE_URL: ${PRODUCT_DB_URL}
+      HOST: ${PRODUCT_HOST}
+      PORT: ${PRODUCT_PORT}
+    ports:
+      - "${PRODUCT_PORT}:${PRODUCT_PORT}"
+    volumes:
+      - ./product_service:/app
+
+  orderservice:
+    build: ./order_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    environment:
+      DATABASE_URL: ${ORDER_DB_URL}
+      HOST: ${ORDER_HOST}
+      PORT: ${ORDER_PORT}
+    ports:
+      - "${ORDER_PORT}:${ORDER_PORT}"
+    volumes:
+      - ./order_service:/app
+
+  cartservice:
+    build: ./cart_service
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+    environment:
+      DATABASE_URL: ${CART_DB_URL}
+      HOST: ${CART_HOST}
+      PORT: ${CART_PORT}
+    ports:
+      - "${CART_PORT}:${CART_PORT}"
+    volumes:
+      - ./cart_service:/app
+
+volumes:
+  pgdata:
