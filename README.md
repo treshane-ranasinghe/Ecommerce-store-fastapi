@@ -30,8 +30,6 @@ Each service connects to its own PostgreSQL database, and all configurations are
 
 ---
 
-## Project Structure
-
 Ecommerce-fastapi/
 ├─ .env                           # Global environment variables for all services
 ├─ docker-compose.yml             # Docker Compose configuration for all services
